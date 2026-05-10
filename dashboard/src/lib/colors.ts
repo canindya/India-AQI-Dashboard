@@ -1,7 +1,10 @@
 // India AQI dashboard color tokens.
-// Categories follow CPCB India AQI buckets (cpcb.nic.in/National-Air-Quality-Index):
+// Category names and AQI ranges follow CPCB's six-bucket India AQI scale
+// (cpcb.nic.in/National-Air-Quality-Index):
 //   0-50 Good, 51-100 Satisfactory, 101-200 Moderate,
 //   201-300 Poor, 301-400 Very Poor, 401-500 Severe.
+// The hex values below are our own choice (CPCB-aligned semantics, not CPCB's
+// exact swatches) — see DESIGN.md for the palette rationale.
 export const COLORS = {
   accent: '#2E6B8A',
   accentWarm: '#C75B39',
@@ -53,7 +56,7 @@ export function getAxisColor(): string {
   return getComputedStyle(document.documentElement).getPropertyValue('--chart-axis').trim() || '#9AA0A6';
 }
 
-// CPCB India AQI bucket colors.
+// Maps an AQI value to a hex color from our six-bucket palette.
 export function getAQIColor(aqi: number | null | undefined): string {
   if (aqi == null) return '#5C6B73';
   if (aqi <= 50) return COLORS.aqi.good;
@@ -74,12 +77,15 @@ export function getAQILabel(aqi: number | null | undefined): string {
   return 'Severe';
 }
 
+// Health-effect descriptions per CPCB AQI category, paraphrased from CPCB's
+// "About AQI" document (cpcb.nic.in, "Likely Health Impacts" column).
+// These are the descriptions CPCB itself publishes for each band.
 export function getAQIAdvice(aqi: number | null | undefined): string {
-  if (aqi == null) return 'Data unavailable for this period.';
-  if (aqi <= 50) return 'Minimal impact. Air quality is satisfactory for outdoor activity.';
-  if (aqi <= 100) return 'Acceptable for most. Sensitive individuals may notice minor irritation.';
-  if (aqi <= 200) return 'May cause breathing discomfort to people with lung disease, children and older adults.';
-  if (aqi <= 300) return 'May cause breathing discomfort to most people on prolonged exposure. Limit prolonged outdoor exertion.';
-  if (aqi <= 400) return 'May cause respiratory illness on prolonged exposure. Avoid outdoor activity.';
-  return 'Hazardous. Affects healthy people and seriously affects those with existing diseases. Stay indoors.';
+  if (aqi == null) return 'No data available for this period.';
+  if (aqi <= 50) return 'Minimal impact. (CPCB)';
+  if (aqi <= 100) return 'Minor breathing discomfort to sensitive people. (CPCB)';
+  if (aqi <= 200) return 'Breathing discomfort to people with lung disease such as asthma, and discomfort to people with heart disease, children and older adults. (CPCB)';
+  if (aqi <= 300) return 'Breathing discomfort to most people on prolonged exposure, and discomfort to people with heart disease. (CPCB)';
+  if (aqi <= 400) return 'Respiratory illness on prolonged exposure. Effect may be more pronounced in people with lung and heart diseases. (CPCB)';
+  return 'Affects healthy people and seriously impacts those with existing diseases. (CPCB)';
 }

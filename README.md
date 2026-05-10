@@ -65,6 +65,31 @@ npm run build && npx next start
 
 WAQI/aqicn and IQAir are deliberately excluded — see `dashboard/src/app/sources/page.tsx`.
 
+## Data integrity
+
+The dashboard's pollutant numbers (PM2.5, PM10, CO, NO₂, SO₂, O₃, EU AQI) come
+straight from Open-Meteo's Air Quality API and are easy to reproduce — call
+the same endpoint with the same lat/lon and start date and you get the same
+hourly arrays. The headline India AQI is **computed** from PM2.5, PM10, NO₂
+and O₃ (8-hour max) using CPCB's official breakpoint tables and its
+≥16-valid-hours-per-day rule, with two important simplifications:
+
+- **4 of CPCB's 8 pollutants.** NH₃ and Pb are not served by Open-Meteo;
+  CO and SO₂ are deliberately excluded because CAMS Global accuracy for
+  boundary-layer gaseous species is poor (modeled CO comes back at
+  ~0.5 mg/m³ for Delhi, whereas station CO in winter is 4–8 mg/m³).
+  Read our number as a *4-of-8 CPCB-style AQI*, not the official
+  daily bulletin. A "4-of-8" badge on every per-city page links to the
+  methodology section that explains this.
+- **Modeled, not observed.** Open-Meteo serves Copernicus CAMS — for most
+  Indian cities the served product is CAMS Global (~0.4°, ~40 km), not a
+  station observation. Trends are reliable; absolute values can diverge
+  from a single CPCB station inside the same cell.
+
+For the full audit (what's real, what's simplified, what was asserted
+without evidence and was fixed), see `DESIGN.md` §"What this AQI is and isn't"
+and the `/methodology` page.
+
 ## Adding a city
 
 1. Append a `City` entry to `dashboard/src/lib/cities.ts`.

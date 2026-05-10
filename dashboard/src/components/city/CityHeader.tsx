@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getAQIColor, getAQILabel, getAQIAdvice } from '@/lib/colors';
 
 interface CityHeaderProps {
@@ -7,11 +8,10 @@ interface CityHeaderProps {
   lon: number;
   latestAqi: number | null;
   latestDate: string | null;
-  populationBand?: string;
 }
 
 export default function CityHeader({
-  name, state, lat, lon, latestAqi, latestDate, populationBand,
+  name, state, lat, lon, latestAqi, latestDate,
 }: CityHeaderProps) {
   const color = getAQIColor(latestAqi);
   const label = getAQILabel(latestAqi);
@@ -25,12 +25,23 @@ export default function CityHeader({
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-1">{name}</h1>
           <p className="text-sm text-muted mt-1">
             {state} · {lat.toFixed(3)}°N, {lon.toFixed(3)}°E
-            {populationBand ? ` · ${populationBand.replace('-', ' ')}` : ''}
+          </p>
+          <p className="text-xs text-muted/80 mt-1">
+            Approximate city centroid; Open-Meteo snaps to the nearest CAMS grid cell.
           </p>
         </div>
         <div className="flex items-end gap-4">
           <div className="text-right">
-            <p className="text-xs uppercase tracking-wider text-muted">Latest AQI</p>
+            <div className="flex items-center gap-1.5 justify-end">
+              <p className="text-xs uppercase tracking-wider text-muted">Latest AQI</p>
+              <Link
+                href="/methodology"
+                title="Computed from PM2.5, PM10, NO₂ and 8-hour max O₃ using CPCB breakpoints. Excludes CO, SO₂, NH₃, Pb. Official CPCB AQI uses 8 pollutants — see methodology."
+                className="text-[10px] font-medium px-1.5 py-0.5 rounded-full border border-border text-muted hover:text-foreground hover:border-[var(--color-accent-warm)] transition-colors"
+              >
+                4-of-8
+              </Link>
+            </div>
             <p className="text-3xl sm:text-4xl font-bold" style={{ color }}>
               {latestAqi ?? '—'}
             </p>

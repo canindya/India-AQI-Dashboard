@@ -132,7 +132,6 @@ export default function CityClient({ slug, city }: Props) {
         lon={city.lon}
         latestAqi={lastDaily?.aqi ?? null}
         latestDate={lastDaily?.date ?? null}
-        populationBand={city.populationBand}
       />
 
       <DateRangeFilter minYear={2022} maxYear={currentYear} onChange={setYearRange} />

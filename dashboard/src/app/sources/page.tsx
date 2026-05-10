@@ -24,7 +24,7 @@ export default function SourcesPage() {
           license="CC-BY 4.0"
           notes={[
             'Hourly PM2.5, PM10, CO, NO₂, SO₂, O₃ and the European AQI for any latitude/longitude from 2022-01-01 onward.',
-            'Modeled values from the Copernicus Atmosphere Monitoring Service (CAMS), ~11 km global grid.',
+            'Modeled values from the Copernicus Atmosphere Monitoring Service (CAMS). Open-Meteo serves CAMS Europe (~0.1°, ~11 km) where available and CAMS Global (~0.4°, ~40 km) elsewhere; for most Indian cities expect resolution closer to the global grid.',
             'Free, no auth, no rate-limit headers — but the free tier shares per-IP quota, so the daily refresh runs server-side, not from the browser.',
           ]}
         />
@@ -69,8 +69,11 @@ export default function SourcesPage() {
         <p className="mt-3">
           Want to verify a number? Open the same date on{' '}
           <a href="https://app.cpcbccr.com/AQI_India" className="underline">CPCB AQI India</a>{' '}
-          and compare. Modeled (Open-Meteo) values typically track CPCB station observations within ±30 AQI points; larger gaps usually point to terrain, station-density or local emission events. See{' '}
-          <Link href="/methodology" className="underline">methodology</Link>.
+          and compare. Expect divergence from station observations because the Open-Meteo feed is a
+          global atmospheric model, not a local station — magnitude varies by terrain, station
+          density and local emission events. We have not yet back-tested the divergence
+          systematically; see <Link href="/methodology" className="underline">methodology</Link> for
+          the full list of caveats.
         </p>
       </div>
     </div>

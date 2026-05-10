@@ -18,7 +18,26 @@ accumulated `[Unreleased]` notes under a new `[x.y.z] — YYYY-MM-DD` heading.
 
 ## [Unreleased]
 
-_Nothing yet. Add entries here as commits land._
+### Changed
+- **AQI computation upgraded from 2 to 4 pollutants** (`scripts/transform/aqi_breakpoints.py`). The composite India AQI now uses PM2.5 (24-h mean), PM10 (24-h mean), NO₂ (24-h mean) and O₃ (max of 8-hour rolling means) with CPCB's official breakpoint tables. CPCB's "≥16 valid hours per day" rule is now enforced — days with insufficient data produce a null AQI rather than a misleading short-window value. CPCB's "≥3 sub-indices including ≥1 PM" composite rule is enforced too. Pipeline regenerated all 30 city JSONs; AQI values change meaningfully (e.g., Delhi 2026-05-09: 195 Moderate → 302 Very Poor, driven by 8-h max O₃ ≈ 214 µg/m³).
+- **CO and SO₂ deliberately excluded from AQI computation** even though Open-Meteo serves them. Reason: CAMS Global accuracy for boundary-layer gaseous species is poor (modeled Delhi CO ≈ 0.5 mg/m³ vs station CO 4–8 mg/m³ in winter); including them would push AQI in the wrong direction. NH₃ and Pb are unavailable from Open-Meteo. So the new AQI is a "4-of-8 CPCB-style AQI" — closer to the official bulletin than the v0.1 PM-only AQI, but still not identical.
+- **Per-city JSON now carries an `aqi_method` block** documenting the pollutants used, the 16-hour minimum, the composite rule, the breakpoint source, and which pollutants were excluded and why.
+- **Per-city header badge** changed from `PM-only` to `4-of-8`; tooltip updated to list the four included pollutants.
+- **Methodology page**: "What this AQI is — and isn't" section rewritten to describe the 4-pollutant composite (no longer "PM-only"); "How the AQI is computed" section now explains the 8-hour rolling max for O₃ and the ≥16-hour rule. Caveats expanded with a concrete CO modeled-vs-station numeric example.
+- **DESIGN.md, README "Data integrity", CLAUDE.md "AQI math reference"**: all updated to reflect the 4-pollutant computation and the deliberate CO/SO₂ exclusion. CLAUDE.md notes that this diverges from Kolkata's still-PM-only pipeline.
+
+### Earlier in this Unreleased range (audit pass)
+- **Sources page**: removed the unsupported "±30 AQI points" claim. Replaced with an honest hedge that we have not yet back-tested the divergence systematically.
+- **Resolution claim**: corrected "~11 km global grid" to "CAMS Europe (~0.1°, ~11 km) where available; CAMS Global (~0.4°, ~40 km) for most of India" across `sources/page.tsx`, `methodology/page.tsx`, and `DESIGN.md`.
+- **`getAQIAdvice` (`dashboard/src/lib/colors.ts`)**: rewrote the six health-effect strings to use CPCB's published "Likely Health Impacts" wording, with `(CPCB)` attribution on each line.
+- **City registry**: removed the arbitrary `populationBand` field from `cities.ts`, `City` interface, `export_cities.mjs` regex, `CityHeader` props, and `CityClient`. Selection criterion is now documented as a comment at the top of `cities.ts`.
+- **Per-city header (`CityHeader.tsx`)**: added a centroid-snap caption and the methodology-linked AQI-method badge.
+- **`colors.ts` header comment**: clarified that the hex palette is our choice, not CPCB's actual swatches.
+- **README**: added a "Data integrity" section.
+- **`CLAUDE.md`**: dropped the stale `populationBand` reference from the "Adding a city" recipe.
+
+### Documentation
+- **Audit findings + 4-pollutant remediation plan** recorded in `C:\Users\Anindya\.claude\plans\i-want-to-build-cozy-hickey.md` (kept locally, not committed).
 
 ---
 

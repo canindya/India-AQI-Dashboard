@@ -55,7 +55,7 @@ We considered four free providers:
 
 | Provider | Pros | Cons | Decision |
 |---|---|---|---|
-| **Open-Meteo Air Quality** | Free, no auth, hourly 2022→present for any lat/lon, CC-BY 4.0, already proven in Kolkata pipeline | Modeled (Copernicus CAMS), ~11 km grid — accuracy degrades over hill/coastal terrain | **Primary** |
+| **Open-Meteo Air Quality** | Free, no auth, hourly 2022→present for any lat/lon, CC-BY 4.0, already proven in Kolkata pipeline | Modeled (Copernicus CAMS): CAMS Europe (~0.1°, ~11 km) where available; CAMS Global (~0.4°, ~40 km) for most of India. Accuracy degrades over hill/coastal terrain | **Primary** |
 | OpenAQ v3 | Real station observations, CPCB CAAQMS network | Free API key required, sparse for smaller capitals (0–1 stations), per-measurement attribution | **Deferred to v1.1** as overlay |
 | WAQI / aqicn | Free token, 582 CPCB station feeds | License explicitly forbids redistribution of cached/archived data — incompatible with our static-JSON model | **Excluded** |
 | IQAir | High-quality global feed | Paid for commercial / programmatic use | **Excluded** |
@@ -66,6 +66,14 @@ what makes a 30-city dashboard feasible without per-city special cases. We
 flag the modeled-vs-station caveat on the Sources and Methodology pages and
 will surface terrain warnings on hill cities (Shimla, Srinagar, Dehradun,
 Guwahati) when we add OpenAQ overlays.
+
+**Resolution caveat we made explicit during the v0.1 audit:** for most Indian
+cities Open-Meteo returns CAMS Global (~0.4°, ~40 km) rather than CAMS Europe
+(~0.1°, ~11 km). The point estimate at a city centroid therefore covers a
+~40 × 40 km cell. That is fine for trend analysis but means absolute values
+will not always agree with a single CPCB station inside the cell. The
+methodology page communicates this; the per-city header carries a "4-of-8"
+badge linking to the same caveat.
 
 CPCB is cited as the **authoritative reference** but not ingested. CPCB's
 public API requires registration with no clear redistribution terms, and the
@@ -124,6 +132,20 @@ to serve.
 We expose the EU AQI value too (Open-Meteo provides it for free), as a
 secondary chart that visualises how strict the Indian scale is for PM
 versus the European scale.
+
+**4-of-8 simplification (after the v0.1 audit pass):** the official India
+AQI is the worst sub-index across **eight** pollutants (PM2.5, PM10, NO₂,
+O₃ 8-h, CO 8-h, SO₂, NH₃, Pb). Our pipeline computes from **four**:
+PM2.5, PM10, NO₂ (24-h means) and O₃ (8-h rolling max), enforcing CPCB's
+≥16-valid-hours-per-day rule and CPCB's "≥3 sub-indices including ≥1 PM"
+composite rule. We drop **CO and SO₂** because CAMS Global's accuracy for
+boundary-layer gaseous species is poor (modeled CO is typically <1 mg/m³
+in our payloads, whereas Indian winter station CO routinely runs 4–8
+mg/m³ — including it would push AQI in the wrong direction). **NH₃ and
+Pb** are unavailable from Open-Meteo. So our number is closer to CPCB's
+than v0.1's PM-only version was, but still not identical — it should be
+read as a **"4-of-8 CPCB-style AQI"**. This is signposted on the
+methodology page and via a "4-of-8" badge on every per-city header.
 
 ### Why Leaflet (not Mapbox / D3 / topo)
 

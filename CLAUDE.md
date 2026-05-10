@@ -89,16 +89,26 @@ npx serve@latest dashboard/out -l 3535  # serve the production build
 
 ## Adding a city
 
-1. Append a `City` entry to `dashboard/src/lib/cities.ts` (slug, name, state, lat, lon, populationBand).
+1. Append a `City` entry to `dashboard/src/lib/cities.ts` (slug, name, state, lat, lon).
 2. Run `D:/Python/python.exe scripts/run_pipeline.py --city <slug>` to fetch + transform that one city.
 3. `npm run build` will pick up the new `/city/<slug>` route via `generateStaticParams`.
 
 ## Reference for AQI math
 
-`compute_india_aqi(pm25, pm10)` in `scripts/transform/aqi_breakpoints.py` is lifted
-verbatim from `City_Kolkata/scripts/transform/environment_transform.py`. Update both
-in sync if the CPCB breakpoint tables change. CPCB scale on `/methodology` page must
-match the Python tables.
+`compute_india_aqi(pm25, pm10, no2, o3_8h_max)` in
+`scripts/transform/aqi_breakpoints.py` implements CPCB's composite AQI from 4 of
+the 8 official pollutants (PM2.5, PM10, NO₂, 8-h max O₃). Rules enforced:
+sub-index linear interpolation between CPCB breakpoints; daily aggregates require
+≥16 valid hourly readings; composite requires ≥3 sub-indices including ≥1 PM.
+
+**Diverged from Kolkata.** Kolkata's `environment_transform.py` still uses the
+PM-only computation. If breakpoint tables change at CPCB, update both — but the
+shapes are no longer identical, so the JSON files differ in the `aqi` column for
+days when O₃ or NO₂ dominates.
+
+CO and SO₂ are intentionally NOT used in the AQI (CAMS Global accuracy is poor for
+boundary-layer gaseous species). NH₃ and Pb aren't served by Open-Meteo. The
+methodology page and the per-city "4-of-8" badge surface this.
 
 ## What lives where for cross-references
 

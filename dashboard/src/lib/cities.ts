@@ -1,8 +1,16 @@
-// Single source of truth for the 30 cities covered in v1.
+// Single source of truth for the cities covered in v1.
 // `scripts/export_cities.mjs` mirrors this list to `scripts/cities.json` so the
 // Python pipeline reads the same registry. Slugs are URLs forever — do not rename.
-
-export type PopulationBand = 'mega' | 'million-plus' | 'capital-major' | 'capital-other';
+//
+// Coordinates are approximate city centroids (typically the central business
+// district). Open-Meteo snaps each request to the nearest CAMS grid cell, so
+// the modeled value is for that cell, not the literal coordinate.
+//
+// Selection criterion (v1): the six mega-metros, the rest of India's
+// million-plus cities by 2011 census urban-agglomeration population, and
+// every state / UT capital not already included. Where a city qualifies on
+// multiple grounds (e.g., Lucknow is both a million-plus city and a state
+// capital), it is listed once.
 
 export interface City {
   slug: string;
@@ -10,45 +18,44 @@ export interface City {
   state: string;
   lat: number;
   lon: number;
-  populationBand: PopulationBand;
 }
 
 export const CITIES: City[] = [
   // Mega metros
-  { slug: 'delhi',           name: 'Delhi',                  state: 'Delhi',              lat: 28.6139, lon: 77.2090, populationBand: 'mega' },
-  { slug: 'mumbai',          name: 'Mumbai',                 state: 'Maharashtra',        lat: 19.0760, lon: 72.8777, populationBand: 'mega' },
-  { slug: 'bengaluru',       name: 'Bengaluru',              state: 'Karnataka',          lat: 12.9716, lon: 77.5946, populationBand: 'mega' },
-  { slug: 'chennai',         name: 'Chennai',                state: 'Tamil Nadu',         lat: 13.0827, lon: 80.2707, populationBand: 'mega' },
-  { slug: 'kolkata',         name: 'Kolkata',                state: 'West Bengal',        lat: 22.5726, lon: 88.3639, populationBand: 'mega' },
-  { slug: 'hyderabad',       name: 'Hyderabad',              state: 'Telangana',          lat: 17.3850, lon: 78.4867, populationBand: 'mega' },
+  { slug: 'delhi',              name: 'Delhi',              state: 'Delhi',              lat: 28.6139, lon: 77.2090 },
+  { slug: 'mumbai',             name: 'Mumbai',             state: 'Maharashtra',        lat: 19.0760, lon: 72.8777 },
+  { slug: 'bengaluru',          name: 'Bengaluru',          state: 'Karnataka',          lat: 12.9716, lon: 77.5946 },
+  { slug: 'chennai',            name: 'Chennai',            state: 'Tamil Nadu',         lat: 13.0827, lon: 80.2707 },
+  { slug: 'kolkata',            name: 'Kolkata',            state: 'West Bengal',        lat: 22.5726, lon: 88.3639 },
+  { slug: 'hyderabad',          name: 'Hyderabad',          state: 'Telangana',          lat: 17.3850, lon: 78.4867 },
 
   // Million-plus + major capitals
-  { slug: 'ahmedabad',       name: 'Ahmedabad',              state: 'Gujarat',            lat: 23.0225, lon: 72.5714, populationBand: 'million-plus' },
-  { slug: 'pune',            name: 'Pune',                   state: 'Maharashtra',        lat: 18.5204, lon: 73.8567, populationBand: 'million-plus' },
-  { slug: 'jaipur',          name: 'Jaipur',                 state: 'Rajasthan',          lat: 26.9124, lon: 75.7873, populationBand: 'capital-major' },
-  { slug: 'lucknow',         name: 'Lucknow',                state: 'Uttar Pradesh',      lat: 26.8467, lon: 80.9462, populationBand: 'capital-major' },
-  { slug: 'kanpur',          name: 'Kanpur',                 state: 'Uttar Pradesh',      lat: 26.4499, lon: 80.3319, populationBand: 'million-plus' },
-  { slug: 'nagpur',          name: 'Nagpur',                 state: 'Maharashtra',        lat: 21.1458, lon: 79.0882, populationBand: 'million-plus' },
-  { slug: 'indore',          name: 'Indore',                 state: 'Madhya Pradesh',     lat: 22.7196, lon: 75.8577, populationBand: 'million-plus' },
-  { slug: 'bhopal',          name: 'Bhopal',                 state: 'Madhya Pradesh',     lat: 23.2599, lon: 77.4126, populationBand: 'capital-major' },
-  { slug: 'patna',           name: 'Patna',                  state: 'Bihar',              lat: 25.5941, lon: 85.1376, populationBand: 'capital-major' },
-  { slug: 'vadodara',        name: 'Vadodara',               state: 'Gujarat',            lat: 22.3072, lon: 73.1812, populationBand: 'million-plus' },
-  { slug: 'ludhiana',        name: 'Ludhiana',               state: 'Punjab',             lat: 30.9010, lon: 75.8573, populationBand: 'million-plus' },
-  { slug: 'agra',            name: 'Agra',                   state: 'Uttar Pradesh',      lat: 27.1767, lon: 78.0081, populationBand: 'million-plus' },
-  { slug: 'visakhapatnam',   name: 'Visakhapatnam',          state: 'Andhra Pradesh',     lat: 17.6868, lon: 83.2185, populationBand: 'million-plus' },
-  { slug: 'surat',           name: 'Surat',                  state: 'Gujarat',            lat: 21.1702, lon: 72.8311, populationBand: 'million-plus' },
-  { slug: 'varanasi',        name: 'Varanasi',               state: 'Uttar Pradesh',      lat: 25.3176, lon: 82.9739, populationBand: 'million-plus' },
+  { slug: 'ahmedabad',          name: 'Ahmedabad',          state: 'Gujarat',            lat: 23.0225, lon: 72.5714 },
+  { slug: 'pune',               name: 'Pune',               state: 'Maharashtra',        lat: 18.5204, lon: 73.8567 },
+  { slug: 'jaipur',             name: 'Jaipur',             state: 'Rajasthan',          lat: 26.9124, lon: 75.7873 },
+  { slug: 'lucknow',            name: 'Lucknow',            state: 'Uttar Pradesh',      lat: 26.8467, lon: 80.9462 },
+  { slug: 'kanpur',             name: 'Kanpur',             state: 'Uttar Pradesh',      lat: 26.4499, lon: 80.3319 },
+  { slug: 'nagpur',             name: 'Nagpur',             state: 'Maharashtra',        lat: 21.1458, lon: 79.0882 },
+  { slug: 'indore',             name: 'Indore',             state: 'Madhya Pradesh',     lat: 22.7196, lon: 75.8577 },
+  { slug: 'bhopal',             name: 'Bhopal',             state: 'Madhya Pradesh',     lat: 23.2599, lon: 77.4126 },
+  { slug: 'patna',              name: 'Patna',              state: 'Bihar',              lat: 25.5941, lon: 85.1376 },
+  { slug: 'vadodara',           name: 'Vadodara',           state: 'Gujarat',            lat: 22.3072, lon: 73.1812 },
+  { slug: 'ludhiana',           name: 'Ludhiana',           state: 'Punjab',             lat: 30.9010, lon: 75.8573 },
+  { slug: 'agra',               name: 'Agra',               state: 'Uttar Pradesh',      lat: 27.1767, lon: 78.0081 },
+  { slug: 'visakhapatnam',      name: 'Visakhapatnam',      state: 'Andhra Pradesh',     lat: 17.6868, lon: 83.2185 },
+  { slug: 'surat',              name: 'Surat',              state: 'Gujarat',            lat: 21.1702, lon: 72.8311 },
+  { slug: 'varanasi',           name: 'Varanasi',           state: 'Uttar Pradesh',      lat: 25.3176, lon: 82.9739 },
 
-  // Other state capitals / UTs
-  { slug: 'chandigarh',      name: 'Chandigarh',             state: 'Chandigarh',         lat: 30.7333, lon: 76.7794, populationBand: 'capital-other' },
-  { slug: 'thiruvananthapuram', name: 'Thiruvananthapuram',  state: 'Kerala',             lat: 8.5241,  lon: 76.9366, populationBand: 'capital-other' },
-  { slug: 'bhubaneswar',     name: 'Bhubaneswar',            state: 'Odisha',             lat: 20.2961, lon: 85.8245, populationBand: 'capital-other' },
-  { slug: 'guwahati',        name: 'Guwahati',               state: 'Assam',              lat: 26.1445, lon: 91.7362, populationBand: 'capital-other' },
-  { slug: 'ranchi',          name: 'Ranchi',                 state: 'Jharkhand',          lat: 23.3441, lon: 85.3096, populationBand: 'capital-other' },
-  { slug: 'raipur',          name: 'Raipur',                 state: 'Chhattisgarh',       lat: 21.2514, lon: 81.6296, populationBand: 'capital-other' },
-  { slug: 'dehradun',        name: 'Dehradun',               state: 'Uttarakhand',        lat: 30.3165, lon: 78.0322, populationBand: 'capital-other' },
-  { slug: 'shimla',          name: 'Shimla',                 state: 'Himachal Pradesh',   lat: 31.1048, lon: 77.1734, populationBand: 'capital-other' },
-  { slug: 'srinagar',        name: 'Srinagar',               state: 'Jammu & Kashmir',    lat: 34.0837, lon: 74.7973, populationBand: 'capital-other' },
+  // Other state / UT capitals
+  { slug: 'chandigarh',         name: 'Chandigarh',         state: 'Chandigarh',         lat: 30.7333, lon: 76.7794 },
+  { slug: 'thiruvananthapuram', name: 'Thiruvananthapuram', state: 'Kerala',             lat: 8.5241,  lon: 76.9366 },
+  { slug: 'bhubaneswar',        name: 'Bhubaneswar',        state: 'Odisha',             lat: 20.2961, lon: 85.8245 },
+  { slug: 'guwahati',           name: 'Guwahati',           state: 'Assam',              lat: 26.1445, lon: 91.7362 },
+  { slug: 'ranchi',             name: 'Ranchi',             state: 'Jharkhand',          lat: 23.3441, lon: 85.3096 },
+  { slug: 'raipur',             name: 'Raipur',             state: 'Chhattisgarh',       lat: 21.2514, lon: 81.6296 },
+  { slug: 'dehradun',           name: 'Dehradun',           state: 'Uttarakhand',        lat: 30.3165, lon: 78.0322 },
+  { slug: 'shimla',             name: 'Shimla',             state: 'Himachal Pradesh',   lat: 31.1048, lon: 77.1734 },
+  { slug: 'srinagar',           name: 'Srinagar',           state: 'Jammu & Kashmir',    lat: 34.0837, lon: 74.7973 },
 ];
 
 export const CITY_BY_SLUG: Record<string, City> = Object.fromEntries(

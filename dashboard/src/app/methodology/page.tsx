@@ -34,13 +34,41 @@ export default function MethodologyPage() {
         accent="leaf"
       />
 
-      <Section title="India AQI">
+      <Section title="What this AQI is — and isn't">
+        <p className="rounded-lg border border-[var(--color-accent-warm)]/40 bg-card p-4 text-foreground/90">
+          The number we display is a <strong>4-of-8 composite AQI</strong>: the worst sub-index across
+          PM2.5, PM10, NO₂ and O₃ (8-hour max), computed with CPCB&apos;s official breakpoint tables and
+          its <strong>≥ 16 valid hours per day</strong> rule. It is close to — but not identical to —
+          the number CPCB would publish for the same day, because:
+        </p>
+        <ul className="list-disc pl-6 mt-3 space-y-1 text-sm">
+          <li>
+            The <strong>official India AQI uses 8 pollutants</strong> (PM2.5, PM10, NO₂, O₃, CO, SO₂, NH₃, Pb).
+            We use 4. <strong>NH₃ and Pb</strong> are not served by Open-Meteo; <strong>CO and SO₂</strong> we deliberately exclude
+            because CAMS Global&apos;s accuracy for boundary-layer gaseous species is questionable and
+            including them risks pushing AQI in the wrong direction.
+          </li>
+          <li>
+            Open-Meteo provides <strong>modeled</strong> CAMS values, not station observations. The point
+            estimate at a city centroid is not what a CAAQMS station measures.
+          </li>
+        </ul>
+        <p className="mt-3 text-sm">
+          Read it as a <em>4-of-8 CPCB-style AQI</em> — close enough for trends and comparisons across
+          cities and seasons, not a substitute for the official daily bulletin at{' '}
+          <a className="underline" href="https://app.cpcbccr.com/AQI_India" target="_blank" rel="noopener noreferrer">app.cpcbccr.com</a>.
+        </p>
+      </Section>
+
+      <Section title="How the AQI is computed">
         <p>
-          The India AQI follows the Central Pollution Control Board&apos;s breakpoint tables. For each pollutant
-          a sub-index is computed by linear interpolation between the breakpoint thresholds; the headline AQI
-          for the day is the <strong>worst</strong> sub-index across pollutants. We currently compute the AQI from PM2.5
-          and PM10 concentrations (the same approach as the original Kolkata dashboard), since these two are the
-          most reliably reported by Open-Meteo&apos;s CAMS-modeled feed.
+          For each pollutant a sub-index is computed by linear interpolation between CPCB&apos;s breakpoint
+          thresholds; the composite AQI for the day is the <strong>worst</strong> sub-index across pollutants,
+          provided at least 3 sub-indices are available <em>and</em> at least one is PM2.5 or PM10 (CPCB&apos;s
+          minimum-pollutant rule). Daily aggregates of PM2.5, PM10 and NO₂ are 24-hour means; for O₃ we
+          compute the maximum of all 8-hour rolling means ending in the day, as CPCB specifies. Each
+          daily aggregate requires at least 16 valid hourly values; otherwise the sub-index for that
+          pollutant is null.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
           <Table title="PM2.5 (24-h avg, µg/m³)" rows={PM25_BREAKPOINTS} />
@@ -78,13 +106,22 @@ export default function MethodologyPage() {
       <Section title="Caveats">
         <ul className="list-disc pl-6 space-y-2 text-sm">
           <li>
-            <strong>Modeled, not observed.</strong> Open-Meteo serves Copernicus CAMS — a global model on a
-            ~11 km grid. Hill cities (Shimla, Srinagar, Dehradun, Guwahati) and coastal cities can diverge
-            from station readings; treat the trend as more reliable than the absolute value for those.
+            <strong>Modeled, not observed.</strong> Open-Meteo serves Copernicus CAMS. Resolution is
+            CAMS Europe (~0.1°, ~11 km) where available; <strong>for most Indian cities the served
+            product is CAMS Global (~0.4°, ~40 km)</strong>. Hill cities (Shimla, Srinagar, Dehradun,
+            Guwahati) and coastal cities can diverge meaningfully from station readings; treat the
+            trend as more reliable than the absolute value for those.
           </li>
           <li>
-            <strong>Single-source today.</strong> v1 reports Open-Meteo only. A future v1.1 will overlay CPCB
-            CAAQMS station observations from OpenAQ where station coverage is good.
+            <strong>4 of CPCB&apos;s 8 pollutants.</strong> NH₃ and Pb are unavailable from Open-Meteo;
+            CO and SO₂ are excluded because CAMS Global accuracy for those species is poor (e.g.,
+            modeled CO is typically &lt; 1 mg/m³ in our payloads, whereas Indian winter CO from
+            stations is often 4–8 mg/m³). On days when one of these would dominate the official
+            AQI, our number under-reports.
+          </li>
+          <li>
+            <strong>Single-source today.</strong> v1 reports Open-Meteo only. A future overlay will
+            blend CPCB CAAQMS station observations from OpenAQ where station coverage is good.
           </li>
           <li>
             <strong>Free-tier rate limits.</strong> The download script throttles requests and retries on 429s;

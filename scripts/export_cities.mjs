@@ -22,7 +22,7 @@ if (!arrMatch) {
 }
 
 const body = arrMatch[1];
-const objRegex = /\{\s*slug:\s*'([^']+)',\s*name:\s*'([^']+)',\s*state:\s*'([^']+)',\s*lat:\s*(-?[\d.]+),\s*lon:\s*(-?[\d.]+),\s*populationBand:\s*'([^']+)'/g;
+const objRegex = /\{\s*slug:\s*'([^']+)',\s*name:\s*'([^']+)',\s*state:\s*'([^']+)',\s*lat:\s*(-?[\d.]+),\s*lon:\s*(-?[\d.]+)/g;
 
 const cities = [];
 let m;
@@ -33,7 +33,6 @@ while ((m = objRegex.exec(body)) !== null) {
     state: m[3],
     lat: Number(m[4]),
     lon: Number(m[5]),
-    populationBand: m[6],
   });
 }
 
