@@ -1,0 +1,98 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@theme inline {
+  --color-aqi-good: #4CAF50;
+  --color-aqi-moderate: #FFC107;
+  --color-aqi-poor: #FF9800;
+  --color-aqi-unhealthy: #F44336;
+  --color-aqi-severe: #9C27B0;
+  --color-aqi-hazardous: #7B1FA2;
+  --color-accent: #2E6B8A;
+  --color-accent-warm: #C75B39;
+  --color-accent-leaf: #4A7C59;
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --color-card: var(--card);
+  --color-card-hover: var(--card-h);
+  --color-border: var(--bdr);
+  --color-muted: var(--mute);
+}
+
+/* Dark theme (default) */
+:root {
+  --bg: #0F1419;
+  --fg: #E8EAED;
+  --card: #1E2A3A;
+  --card-h: #243447;
+  --bdr: #2D3748;
+  --mute: #9AA0A6;
+  --tooltip-bg: #1E2A3A;
+  --tooltip-border: #2D3748;
+  --tooltip-text: #E8EAED;
+  --chart-grid: #2D3748;
+  --chart-axis: #9AA0A6;
+}
+
+.light {
+  --bg: #F8F9FA;
+  --fg: #1A1A2E;
+  --card: #FFFFFF;
+  --card-h: #F0F1F3;
+  --bdr: #E2E4E8;
+  --mute: #6B7280;
+  --tooltip-bg: #FFFFFF;
+  --tooltip-border: #E2E4E8;
+  --tooltip-text: #1A1A2E;
+  --chart-grid: #E2E4E8;
+  --chart-axis: #6B7280;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans), Arial, sans-serif;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--bdr); border-radius: 4px; }
+
+.recharts-tooltip-wrapper { z-index: 100 !important; }
+.recharts-default-tooltip {
+  background-color: var(--tooltip-bg) !important;
+  border-color: var(--tooltip-border) !important;
+  color: var(--tooltip-text) !important;
+}
+.recharts-default-tooltip .recharts-tooltip-label,
+.recharts-default-tooltip .recharts-tooltip-item { color: var(--tooltip-text) !important; }
+.recharts-cartesian-grid line { stroke: var(--chart-grid) !important; }
+.recharts-xAxis .recharts-cartesian-axis-tick text,
+.recharts-yAxis .recharts-cartesian-axis-tick text { fill: var(--chart-axis) !important; }
+.recharts-xAxis .recharts-cartesian-axis-line,
+.recharts-yAxis .recharts-cartesian-axis-line { stroke: var(--chart-grid) !important; }
+.recharts-legend-item-text { color: var(--chart-axis) !important; }
+.recharts-label { fill: var(--chart-axis) !important; }
+
+.light .rounded-xl { box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); }
+.light .rounded-xl:hover { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12); }
+
+/* Leaflet container needs an explicit height to render */
+.leaflet-container {
+  background: var(--bg);
+  font-family: var(--font-sans), Arial, sans-serif;
+}
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: var(--card) !important;
+  color: var(--fg) !important;
+  border: 1px solid var(--bdr);
+}
+.leaflet-popup-content {
+  margin: 8px 12px !important;
+  font-size: 13px;
+  line-height: 1.4;
+}

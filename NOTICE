@@ -1,0 +1,13 @@
+India AQI Dashboard
+Copyright 2026 Anindya Chakraborty
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+
+This product uses data from:
+  * Open-Meteo Air Quality API (https://open-meteo.com/) — CC-BY 4.0
+    Underlying source: Copernicus Atmosphere Monitoring Service (CAMS).
+  * Central Pollution Control Board (CPCB) National Air Quality Index
+    (https://app.cpcbccr.com/AQI_India) — cited as authoritative reference.
+  * OpenStreetMap base tiles (https://www.openstreetmap.org/copyright)
+    © OpenStreetMap contributors, ODbL.

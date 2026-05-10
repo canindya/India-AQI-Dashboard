@@ -1,0 +1,17 @@
+node_modules/
+.next/
+out/
+.env*
+!.env.example
+*.tsbuildinfo
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Raw downloaded data (regenerable)
+data/raw/
+
+.DS_Store
