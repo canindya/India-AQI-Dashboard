@@ -18,6 +18,9 @@ accumulated `[Unreleased]` notes under a new `[x.y.z] — YYYY-MM-DD` heading.
 
 ## [Unreleased]
 
+### Added
+- **GitHub Pages deploy workflow** (`.github/workflows/deploy.yml`). Builds the Next.js static export with `NEXT_PUBLIC_BASE_PATH=/India-AQI-Dashboard`, adds `.nojekyll`, and publishes `dashboard/out` to Pages. Triggers on push to `main`, manual `workflow_dispatch`, and a successful `Daily AQI refresh` run.
+
 ### Changed
 - **AQI computation upgraded from 2 to 4 pollutants** (`scripts/transform/aqi_breakpoints.py`). The composite India AQI now uses PM2.5 (24-h mean), PM10 (24-h mean), NO₂ (24-h mean) and O₃ (max of 8-hour rolling means) with CPCB's official breakpoint tables. CPCB's "≥16 valid hours per day" rule is now enforced — days with insufficient data produce a null AQI rather than a misleading short-window value. CPCB's "≥3 sub-indices including ≥1 PM" composite rule is enforced too. Pipeline regenerated all 30 city JSONs; AQI values change meaningfully (e.g., Delhi 2026-05-09: 195 Moderate → 302 Very Poor, driven by 8-h max O₃ ≈ 214 µg/m³).
 - **CO and SO₂ deliberately excluded from AQI computation** even though Open-Meteo serves them. Reason: CAMS Global accuracy for boundary-layer gaseous species is poor (modeled Delhi CO ≈ 0.5 mg/m³ vs station CO 4–8 mg/m³ in winter); including them would push AQI in the wrong direction. NH₃ and Pb are unavailable from Open-Meteo. So the new AQI is a "4-of-8 CPCB-style AQI" — closer to the official bulletin than the v0.1 PM-only AQI, but still not identical.
