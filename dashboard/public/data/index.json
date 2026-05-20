@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-19T22:31:59+00:00",
+  "generated_at": "2026-05-20T22:25:47+00:00",
   "source": "Open-Meteo Air Quality API (Copernicus CAMS)",
   "cities": [
     {
@@ -8,11 +8,11 @@
       "state": "Delhi",
       "lat": 28.6139,
       "lon": 77.209,
-      "current_aqi": 500,
-      "current_pm25": 163.0,
-      "current_pm10": 780.7,
+      "current_aqi": 441,
+      "current_pm25": 106.7,
+      "current_pm10": 499.4,
       "category": "Severe",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "mumbai",
@@ -20,11 +20,11 @@
       "state": "Maharashtra",
       "lat": 19.076,
       "lon": 72.8777,
-      "current_aqi": 125,
-      "current_pm25": 22.1,
-      "current_pm10": 47.5,
+      "current_aqi": 103,
+      "current_pm25": 23.7,
+      "current_pm10": 57.0,
       "category": "Moderate",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "bengaluru",
@@ -32,11 +32,11 @@
       "state": "Karnataka",
       "lat": 12.9716,
       "lon": 77.5946,
-      "current_aqi": 168,
-      "current_pm25": 25.0,
-      "current_pm10": 32.8,
+      "current_aqi": 122,
+      "current_pm25": 10.2,
+      "current_pm10": 10.8,
       "category": "Moderate",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "chennai",
@@ -44,11 +44,11 @@
       "state": "Tamil Nadu",
       "lat": 13.0827,
       "lon": 80.2707,
-      "current_aqi": 168,
-      "current_pm25": 14.7,
-      "current_pm10": 19.3,
+      "current_aqi": 196,
+      "current_pm25": 18.8,
+      "current_pm10": 22.4,
       "category": "Moderate",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "kolkata",
@@ -56,11 +56,11 @@
       "state": "West Bengal",
       "lat": 22.5726,
       "lon": 88.3639,
-      "current_aqi": 139,
-      "current_pm25": 22.3,
-      "current_pm10": 28.1,
+      "current_aqi": 136,
+      "current_pm25": 21.5,
+      "current_pm10": 27.9,
       "category": "Moderate",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "hyderabad",
@@ -68,11 +68,11 @@
       "state": "Telangana",
       "lat": 17.385,
       "lon": 78.4867,
-      "current_aqi": 150,
-      "current_pm25": 17.1,
-      "current_pm10": 21.2,
+      "current_aqi": 184,
+      "current_pm25": 29.6,
+      "current_pm10": 35.9,
       "category": "Moderate",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "ahmedabad",
@@ -80,11 +80,11 @@
       "state": "Gujarat",
       "lat": 23.0225,
       "lon": 72.5714,
-      "current_aqi": 120,
-      "current_pm25": 19.0,
-      "current_pm10": 49.1,
+      "current_aqi": 105,
+      "current_pm25": 18.7,
+      "current_pm10": 47.0,
       "category": "Moderate",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "pune",
@@ -92,11 +92,11 @@
       "state": "Maharashtra",
       "lat": 18.5204,
       "lon": 73.8567,
-      "current_aqi": 185,
-      "current_pm25": 24.5,
-      "current_pm10": 40.0,
+      "current_aqi": 169,
+      "current_pm25": 25.5,
+      "current_pm10": 44.8,
       "category": "Moderate",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "jaipur",
@@ -104,11 +104,11 @@
       "state": "Rajasthan",
       "lat": 26.9124,
       "lon": 75.7873,
-      "current_aqi": 230,
-      "current_pm25": 52.0,
-      "current_pm10": 280.4,
-      "category": "Poor",
-      "updated": "2026-05-18"
+      "current_aqi": 190,
+      "current_pm25": 44.1,
+      "current_pm10": 234.7,
+      "category": "Moderate",
+      "updated": "2026-05-19"
     },
     {
       "slug": "lucknow",
@@ -116,11 +116,11 @@
       "state": "Uttar Pradesh",
       "lat": 26.8467,
       "lon": 80.9462,
-      "current_aqi": 265,
-      "current_pm25": 85.0,
-      "current_pm10": 314.9,
+      "current_aqi": 281,
+      "current_pm25": 74.6,
+      "current_pm10": 204.3,
       "category": "Poor",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "kanpur",
@@ -128,11 +128,11 @@
       "state": "Uttar Pradesh",
       "lat": 26.4499,
       "lon": 80.3319,
-      "current_aqi": 420,
-      "current_pm25": 86.8,
-      "current_pm10": 462.9,
-      "category": "Severe",
-      "updated": "2026-05-18"
+      "current_aqi": 399,
+      "current_pm25": 90.8,
+      "current_pm10": 429.2,
+      "category": "Very Poor",
+      "updated": "2026-05-19"
     },
     {
       "slug": "nagpur",
@@ -140,11 +140,11 @@
       "state": "Maharashtra",
       "lat": 21.1458,
       "lon": 79.0882,
-      "current_aqi": 196,
-      "current_pm25": 26.2,
-      "current_pm10": 32.5,
-      "category": "Moderate",
-      "updated": "2026-05-18"
+      "current_aqi": 220,
+      "current_pm25": 34.5,
+      "current_pm10": 51.5,
+      "category": "Poor",
+      "updated": "2026-05-19"
     },
     {
       "slug": "indore",
@@ -152,11 +152,11 @@
       "state": "Madhya Pradesh",
       "lat": 22.7196,
       "lon": 75.8577,
-      "current_aqi": 150,
-      "current_pm25": 23.5,
-      "current_pm10": 53.4,
+      "current_aqi": 139,
+      "current_pm25": 17.1,
+      "current_pm10": 32.6,
       "category": "Moderate",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "bhopal",
@@ -164,11 +164,11 @@
       "state": "Madhya Pradesh",
       "lat": 23.2599,
       "lon": 77.4126,
-      "current_aqi": 137,
-      "current_pm25": 21.2,
-      "current_pm10": 48.6,
+      "current_aqi": 148,
+      "current_pm25": 25.8,
+      "current_pm10": 55.7,
       "category": "Moderate",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "patna",
@@ -176,11 +176,11 @@
       "state": "Bihar",
       "lat": 25.5941,
       "lon": 85.1376,
-      "current_aqi": 281,
-      "current_pm25": 62.1,
-      "current_pm10": 85.2,
+      "current_aqi": 272,
+      "current_pm25": 62.6,
+      "current_pm10": 76.7,
       "category": "Poor",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "vadodara",
@@ -188,11 +188,11 @@
       "state": "Gujarat",
       "lat": 22.3072,
       "lon": 73.1812,
-      "current_aqi": 165,
-      "current_pm25": 23.6,
-      "current_pm10": 46.3,
+      "current_aqi": 149,
+      "current_pm25": 22.7,
+      "current_pm10": 43.7,
       "category": "Moderate",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "ludhiana",
@@ -200,11 +200,11 @@
       "state": "Punjab",
       "lat": 30.901,
       "lon": 75.8573,
-      "current_aqi": 175,
-      "current_pm25": 31.5,
-      "current_pm10": 63.7,
+      "current_aqi": 159,
+      "current_pm25": 49.9,
+      "current_pm10": 157.4,
       "category": "Moderate",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "agra",
@@ -213,10 +213,10 @@
       "lat": 27.1767,
       "lon": 78.0081,
       "current_aqi": 500,
-      "current_pm25": 117.3,
-      "current_pm10": 745.6,
+      "current_pm25": 109.1,
+      "current_pm10": 657.5,
       "category": "Severe",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "visakhapatnam",
@@ -224,11 +224,11 @@
       "state": "Andhra Pradesh",
       "lat": 17.6868,
       "lon": 83.2185,
-      "current_aqi": 108,
-      "current_pm25": 18.9,
-      "current_pm10": 25.9,
+      "current_aqi": 114,
+      "current_pm25": 21.2,
+      "current_pm10": 27.9,
       "category": "Moderate",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "surat",
@@ -236,11 +236,11 @@
       "state": "Gujarat",
       "lat": 21.1702,
       "lon": 72.8311,
-      "current_aqi": 98,
-      "current_pm25": 33.0,
-      "current_pm10": 49.3,
+      "current_aqi": 88,
+      "current_pm25": 34.2,
+      "current_pm10": 61.8,
       "category": "Satisfactory",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "varanasi",
@@ -248,11 +248,11 @@
       "state": "Uttar Pradesh",
       "lat": 25.3176,
       "lon": 82.9739,
-      "current_aqi": 155,
-      "current_pm25": 38.7,
-      "current_pm10": 91.3,
-      "category": "Moderate",
-      "updated": "2026-05-18"
+      "current_aqi": 273,
+      "current_pm25": 55.8,
+      "current_pm10": 125.6,
+      "category": "Poor",
+      "updated": "2026-05-19"
     },
     {
       "slug": "chandigarh",
@@ -260,11 +260,11 @@
       "state": "Chandigarh",
       "lat": 30.7333,
       "lon": 76.7794,
-      "current_aqi": 211,
-      "current_pm25": 16.4,
-      "current_pm10": 18.2,
+      "current_aqi": 207,
+      "current_pm25": 25.8,
+      "current_pm10": 49.6,
       "category": "Poor",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "thiruvananthapuram",
@@ -272,11 +272,11 @@
       "state": "Kerala",
       "lat": 8.5241,
       "lon": 76.9366,
-      "current_aqi": 78,
-      "current_pm25": 9.4,
-      "current_pm10": 15.5,
+      "current_aqi": 70,
+      "current_pm25": 7.5,
+      "current_pm10": 12.7,
       "category": "Satisfactory",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "bhubaneswar",
@@ -284,11 +284,11 @@
       "state": "Odisha",
       "lat": 20.2961,
       "lon": 85.8245,
-      "current_aqi": 148,
-      "current_pm25": 17.4,
-      "current_pm10": 21.7,
+      "current_aqi": 152,
+      "current_pm25": 18.2,
+      "current_pm10": 22.4,
       "category": "Moderate",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "guwahati",
@@ -296,11 +296,11 @@
       "state": "Assam",
       "lat": 26.1445,
       "lon": 91.7362,
-      "current_aqi": 131,
-      "current_pm25": 22.5,
-      "current_pm10": 30.6,
+      "current_aqi": 159,
+      "current_pm25": 31.0,
+      "current_pm10": 41.7,
       "category": "Moderate",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "ranchi",
@@ -308,11 +308,11 @@
       "state": "Jharkhand",
       "lat": 23.3441,
       "lon": 85.3096,
-      "current_aqi": 193,
-      "current_pm25": 46.7,
-      "current_pm10": 67.4,
+      "current_aqi": 184,
+      "current_pm25": 42.0,
+      "current_pm10": 108.7,
       "category": "Moderate",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "raipur",
@@ -320,11 +320,11 @@
       "state": "Chhattisgarh",
       "lat": 21.2514,
       "lon": 81.6296,
-      "current_aqi": 199,
-      "current_pm25": 37.4,
-      "current_pm10": 43.6,
-      "category": "Moderate",
-      "updated": "2026-05-18"
+      "current_aqi": 212,
+      "current_pm25": 40.1,
+      "current_pm10": 49.0,
+      "category": "Poor",
+      "updated": "2026-05-19"
     },
     {
       "slug": "dehradun",
@@ -332,11 +332,11 @@
       "state": "Uttarakhand",
       "lat": 30.3165,
       "lon": 78.0322,
-      "current_aqi": 226,
-      "current_pm25": 16.1,
-      "current_pm10": 18.2,
+      "current_aqi": 277,
+      "current_pm25": 27.3,
+      "current_pm10": 55.7,
       "category": "Poor",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "shimla",
@@ -344,11 +344,11 @@
       "state": "Himachal Pradesh",
       "lat": 31.1048,
       "lon": 77.1734,
-      "current_aqi": 189,
-      "current_pm25": 10.0,
-      "current_pm10": 12.5,
+      "current_aqi": 172,
+      "current_pm25": 18.0,
+      "current_pm10": 37.6,
       "category": "Moderate",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     },
     {
       "slug": "srinagar",
@@ -356,11 +356,11 @@
       "state": "Jammu & Kashmir",
       "lat": 34.0837,
       "lon": 74.7973,
-      "current_aqi": 148,
-      "current_pm25": 21.8,
-      "current_pm10": 33.6,
+      "current_aqi": 138,
+      "current_pm25": 26.4,
+      "current_pm10": 45.1,
       "category": "Moderate",
-      "updated": "2026-05-18"
+      "updated": "2026-05-19"
     }
   ]
 }
